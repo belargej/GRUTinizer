@@ -27,8 +27,8 @@ public:
   void SetPort(int new_port);
 
 private:
-  TGRUTServer(const TGRUTServer&) { MayNotUse(__PRETTY_FUNCTION__); }
-  TGRUTServer& operator=(const TGRUTServer&) { MayNotUse(__PRETTY_FUNCTION__); }
+  //TGRUTServer(const TGRUTServer&) { MayNotUse(__PRETTY_FUNCTION__); }
+  //TGRUTServer& operator=(const TGRUTServer&) { MayNotUse(__PRETTY_FUNCTION__); }
 
   void Run();
   void OpenPort();

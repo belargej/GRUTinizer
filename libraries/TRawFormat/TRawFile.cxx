@@ -344,7 +344,7 @@ void TRawFile::Clear(Option_t *opt) { }
 void TRawFile::Print(Option_t *opt) const { }
 
 size_t TRawFile::FindFileSize(const char* fname) {
-  ifstream temp;
+  std::ifstream temp;
   temp.open(fname, std::ios::in | std::ios::ate);
   size_t fsize = temp.tellg();
   temp.close();

@@ -66,17 +66,17 @@ public:
 
   // Child classes must implement all virtual methods present.
   // Not using "= 0" because root complains if we do.
-  virtual bool IsFinished() const { }
-  virtual std::string SourceDescription() const { }
-  virtual std::string Status() const { }
-  virtual int GetLastErrno() const { }
-  virtual std::string GetLastError() const { }
+  virtual bool IsFinished() const               = 0; //{ }
+  virtual std::string SourceDescription() const = 0; //{ }
+  virtual std::string Status() const            = 0; //{ }
+  virtual int GetLastErrno() const              = 0; //{ }
+  virtual std::string GetLastError() const      = 0; //{ }
 
   size_t GetBytesGiven() const { return fBytesGiven; }
   void SetBytesGiven(size_t bytes = 0) { fBytesGiven = bytes; }
 
 private:
-  virtual int GetEvent(TRawEvent*) { }
+  virtual int GetEvent(TRawEvent*)  = 0;             //{ }
 
   size_t fBytesGiven;
 

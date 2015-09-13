@@ -19,8 +19,8 @@ class TMode3 : public TDetector {
     virtual void ClearWave(Option_t *opt = "");
 
     virtual void          InsertHit(const TDetectorHit& hit) { return;       } 
-    virtual TDetectorHit& GetHit(const int &i=0)             { return hit; }
-    virtual int           Size()                             { return 1;     }
+    virtual TDetectorHit& GetHit(int i=0)                    { return hit;   }
+    virtual int           Size() const                       { return 1;     }
 
     void     BuildFrom(TSmartBuffer& buf, bool read_waveform);
 

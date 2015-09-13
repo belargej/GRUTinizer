@@ -25,9 +25,9 @@ public:
   virtual int  Compare(const TObject& obj) const;
 
   int Build();
-  virtual void InsertHit(const TDetectorHit&) { AbstractMethod("InsertHit()"); }
-  virtual TDetectorHit& GetHit(int i)         { AbstractMethod("GetHit()"); }
-  virtual int  Size() const                   { AbstractMethod("Size()"); }
+  virtual void InsertHit(const TDetectorHit&) = 0; //{ AbstractMethod("InsertHit()"); }
+  virtual TDetectorHit& GetHit(int i)         = 0; //{ AbstractMethod("GetHit()"); }
+  virtual int  Size() const                   = 0; //{ AbstractMethod("Size()"); }
 
 
   Long_t Timestamp() const { return fTimestamp; }
@@ -39,7 +39,7 @@ protected:
   #endif
 
 private:
-  virtual int  BuildHits()                  { AbstractMethod("BuildHits()"); }
+  virtual int  BuildHits() = 0;                //{ AbstractMethod("BuildHits()"); }
 
   Long_t   fTimestamp;
 

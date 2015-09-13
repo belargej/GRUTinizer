@@ -6,7 +6,7 @@
 PLATFORM:=$(PLATFORM)
 # EDIT THIS SECTION
 
-INCLUDES   = include
+INCLUDES   = include .
 CFLAGS     = -g -std=c++11 -O3
 #-Wall -Wextra -pedantic -Wno-unused-parameter
 LINKFLAGS_PREFIX  =
@@ -83,7 +83,8 @@ run_and_test =@printf "%b%b%b" " $(3)$(4)$(5)" $(notdir $(2)) "$(NO_COLOR)\r";  
 endif
 
 all: $(EXECUTABLES) $(LIBRARY_OUTPUT)
-	@cp util/grut-config bin/ 
+	@cp util/grut-config bin/
+	@cp -f `find -iname *.pcm` libraries/ 
 	@printf "$(OK_COLOR)Compilation successful, $(WARN_COLOR)woohoo!$(NO_COLOR)\n"
 
 docs:
@@ -140,6 +141,7 @@ $(foreach lib,$(LIBRARY_DIRS),$(eval $(call library_template,$(lib))))
 clean:
 	@printf "\nCleaning up\n\n"
 	@-$(RM) -rf .build
+	@-$(RM) -f  libraries/*.pcm
 	@-$(RM) -rf bin
 	@-$(RM) -f $(LIBRARY_OUTPUT)
 

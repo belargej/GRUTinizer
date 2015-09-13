@@ -32,9 +32,9 @@ public:
   bool IsPaused();
   void Join();
 
-  virtual bool Initialize() { }
-  virtual void Finalize()   { }
-  virtual int ProcessEvent(TRawEvent& event) { AbstractMethod("ProcessEvent()"); }
+  virtual bool Initialize() = 0; //{ }
+  virtual void Finalize()   = 0; //{ }
+  virtual int ProcessEvent(TRawEvent& event) = 0; //{ AbstractMethod("ProcessEvent()"); }
 
 
   template<typename T, typename... Params>
@@ -73,8 +73,8 @@ private:
   void ProcessSource();
 
 
-  TDataLoop(const TDataLoop& other) { MayNotUse("TDataLoop()"); }
-  TDataLoop& operator=(const TDataLoop& other) { MayNotUse("TDataLoop::operator="); }
+//  TDataLoop(const TDataLoop& other)            { MayNotUse("TDataLoop()"); }
+//  TDataLoop& operator=(const TDataLoop& other) { MayNotUse("TDataLoop::operator="); }
 
 
   ClassDef(TDataLoop,0);

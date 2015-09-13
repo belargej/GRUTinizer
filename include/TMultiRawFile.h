@@ -26,7 +26,7 @@ public:
   TMultiRawFile();
   ~TMultiRawFile();
   TMultiRawFile(const TMultiRawFile& other) { MayNotUse("TMultiRawFile()"); }
-  TMultiRawFile& operator=(const TMultiRawFile& other) { MayNotUse("TMultiRawFile::operator=()"); }
+  //TMultiRawFile& operator=(const TMultiRawFile& other) { MayNotUse("TMultiRawFile::operator=()"); }
 
   void AddFile(TRawFileIn* infile);
   void AddFile(const char* filename);
