@@ -275,5 +275,14 @@ GPeak* GH1D::DoPhotoPeakFitNormBG(double xlow,double xhigh,Option_t *opt) {
 }
 
 
+void GH1D::Streamer(TBuffer &R__b) {
+   if (R__b.IsReading()) {
+      TH1D hist; hist.Streamer(R__b); 
+      hist.Copy(*this);
+      //R__b.ReadClassBuffer(TH1D::Class(),this);
+   } else {
+      R__b.WriteClassBuffer(TH1D::Class(),this);
+   }
+}
 
 

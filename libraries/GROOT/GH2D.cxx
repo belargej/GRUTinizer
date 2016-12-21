@@ -125,6 +125,18 @@ GH1D* GH2D::ProjectionY(const char* name,
   return GH2ProjectionY(name,firstbin,lastbin,option);
 }
 
+
+void GH2D::Streamer(TBuffer &R__b) {
+   if (R__b.IsReading()) {
+      TH2D hist; hist.Streamer(R__b); 
+      hist.Copy(*this);
+      //R__b.ReadClassBuffer(TH1D::Class(),this);
+   } else {
+      R__b.WriteClassBuffer(TH2D::Class(),this);
+   }
+}
+
+
 /*
 void GH2D::Streamer(TBuffer &b) {
   if(b.IsReading()) {
