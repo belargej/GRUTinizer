@@ -78,7 +78,9 @@ bool GetProjectionX(GH2D *hist,double low, double high, double bg_low,double bg_
 
   C_projections->cd(1);
   GH1D *Proj_y = hist->ProjectionX("Gamma_Gamma_xProjection");
-  GH1D *Proj_y_Clone = (GH1D*)Proj_y->Clone(); 
+  GH1D *Proj_y_Clone = (GH1D*)Proj_y->Clone();
+  Proj_y_Clone->SetParent(Proj_y->GetParent());
+  Proj_y_Clone->SetProjectionAxis(Proj_y->GetProjectionAxis());    
   GH1D *Proj_gated = 0;
 
   if(bg_high>0 && bg_low>0){
@@ -203,6 +205,14 @@ bool GetProjectionX(GH2D *hist,GH2D *hist2,
   GH1D *Proj_y2_Clone2      = (GH1D*)Proj_y2->Clone();
   GH1D *Proj_back_y2_Clone  = (GH1D*)Proj_back_y2->Clone();
   GH1D *Proj_back_y2_Clone2 = (GH1D*)Proj_back_y2->Clone();
+  Proj_y2_Clone->SetParent(Proj_y2->GetParent());
+  Proj_y2_Clone->SetProjectionAxis(Proj_y2->GetProjectionAxis());
+  Proj_y2_Clone2->SetParent(Proj_y2->GetParent());
+  Proj_y2_Clone2->SetProjectionAxis(Proj_y2->GetProjectionAxis());
+  Proj_back_y2_Clone->SetParent(Proj_back_y2->GetParent());
+  Proj_back_y2_Clone->SetProjectionAxis(Proj_back_y2->GetProjectionAxis());
+  Proj_back_y2_Clone2->SetParent(Proj_back_y2->GetParent());
+  Proj_back_y2_Clone2->SetProjectionAxis(Proj_back_y2->GetProjectionAxis());
   GH1D *Proj_gated          = 0;
   GH1D *Proj_gated2         = 0;
   GH1D *Proj_gated_back     = 0;
@@ -412,6 +422,8 @@ bool GetProjectionY(GH2D *hist,double low, double high, double bg_low,double bg_
   C_projections->cd(1);
   GH1D *Proj_y = hist->ProjectionY("Gamma_Gamma_yProjection");
   GH1D *Proj_y_Clone = (GH1D*)Proj_y->Clone(); 
+  Proj_y_Clone->SetParent(Proj_y->GetParent());
+  Proj_y_Clone->SetProjectionAxis(Proj_y->GetProjectionAxis());
   GH1D *Proj_gated = 0;
 
   if(bg_high>0 && bg_low>0){
@@ -481,6 +493,7 @@ bool GetProjectionY(GH2D *hist,GH2D *hist2,
 		   double back_low,double back_high, double back_bg_low,
 		   double back_bg_high,
 		   bool back_overlay){
+
   /* Note -> The first histogram, ie hist, is used to draw the total projection.
              The second histogram, ie hist2, is used to draw the background
 	     subtracted spectrum. This way you can have different bins.
@@ -528,17 +541,24 @@ bool GetProjectionY(GH2D *hist,GH2D *hist2,
   GH1D *Proj_back_y  = hist_Clone->ProjectionY("Gamma_Gamma_yProjection_back");
   GH1D *Proj_back_y2 = hist2_Clone->ProjectionY("Gamma_Gamma_yProjection2_back");
 
-
   //  GH1D *Proj_x_Clone = (GH1D*)Proj_x->Clone();
   GH1D *Proj_y2_Clone       = (GH1D*)Proj_y2->Clone();
   GH1D *Proj_y2_Clone2      = (GH1D*)Proj_y2->Clone();
   GH1D *Proj_back_y2_Clone  = (GH1D*)Proj_back_y2->Clone();
   GH1D *Proj_back_y2_Clone2 = (GH1D*)Proj_back_y2->Clone();
+  Proj_y2_Clone->SetParent(Proj_y2->GetParent());
+  Proj_y2_Clone->SetProjectionAxis(Proj_y2->GetProjectionAxis());
+  Proj_y2_Clone2->SetParent(Proj_y2->GetParent());
+  Proj_y2_Clone2->SetProjectionAxis(Proj_y2->GetProjectionAxis());
+  Proj_back_y2_Clone->SetParent(Proj_back_y2->GetParent());
+  Proj_back_y2_Clone->SetProjectionAxis(Proj_back_y2->GetProjectionAxis());
+  Proj_back_y2_Clone2->SetParent(Proj_back_y2->GetParent());
+  Proj_back_y2_Clone2->SetProjectionAxis(Proj_back_y2->GetProjectionAxis());
   GH1D *Proj_gated          = 0;
   GH1D *Proj_gated2         = 0;
   GH1D *Proj_gated_back     = 0;
   GH1D *Proj_gated_back2    = 0;
-
+  
   if(bg_high>0 && bg_low>0){
     Proj_y->SetTitle(Form("Projection with Gate From [%.01f,%.01f] and Background [%.01f,%.01f]",low,high,bg_low,bg_high));
   }else{

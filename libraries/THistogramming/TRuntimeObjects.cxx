@@ -117,18 +117,18 @@ TDirectory* TRuntimeObjects::FillHistogram(const char* dirname,const char* name,
     dir = new TDirectory(dirname,dirname);
     GetObjects().Add(dir);
   }
-  dir->cd();
+  //  dir->cd();
   TH1* hist = (TH1*)dir->FindObject(name);
   if(!hist){
     hist = new GH1D(name,name,
 		    bins, low, high);
-    dir->Add(hist);
+    hist->SetDirectory(dir);
   }
 
   if(!std::isnan(value)) {
     hist->Fill(value, weight);
   }
-  dir->cd("../");
+  //  dir->cd("../");
   //return hist;
   return dir;
 
@@ -170,19 +170,19 @@ TDirectory* TRuntimeObjects::FillHistogram(const char* dirname,const char* name,
     dir = new TDirectory(dirname,dirname);
     GetObjects().Add(dir);
   }
-  dir->cd();
+  //  dir->cd();
   TH2* hist = (TH2*)dir->FindObject(name);
   if(!hist){
     hist = new GH2D(name,name,
                             Xbins, Xlow, Xhigh,
                             Ybins, Ylow, Yhigh);
-    dir->Add(hist);
+    hist->SetDirectory(dir);
   }
 
   if(!std::isnan(Xvalue) && !std::isnan(Yvalue)) {
     hist->Fill(Xvalue, Yvalue, weight);
   }
-  dir->cd("../");
+  //  dir->cd("../");
   //return hist;
   return dir;/*
   TH2* hist = (TH2*) GetObjects().FindObject(name);
@@ -206,18 +206,19 @@ TDirectory* TRuntimeObjects::FillProfileHist(const char* dirname,const char* nam
     dir = new TDirectory(dirname,dirname);
     GetObjects().Add(dir);
   }
-  dir->cd();
+  //  dir->cd();
   TProfile *prof = (TProfile*)dir->FindObject(name);
   if(!prof){
     prof = new TProfile(name,name,
 			Xbins,Xlow,Xhigh);
-   dir->Add(prof);
+    prof->SetDirectory(dir);
+    //   dir->Add(prof);
   }
 
   if(!(std::isnan(Xvalue)))
     if(!(std::isnan(Yvalue)))
       prof->Fill(Xvalue,Yvalue);
-  dir->cd("../");
+  //  dir->cd("../");
   return dir;
 }
 
@@ -229,13 +230,13 @@ TDirectory* TRuntimeObjects::FillHistogramSym(const char* dirname,const char* na
     dir = new TDirectory(dirname,dirname);
     GetObjects().Add(dir);
   }
-  dir->cd();
+  //  dir->cd();
   TH2* hist = (TH2*)dir->FindObject(name);
   if(!hist){
     hist = new GH2D(name,name,
                             Xbins, Xlow, Xhigh,
                             Ybins, Ylow, Yhigh);
-    dir->Add(hist);
+    hist->SetDirectory(dir);
   }
   if(!(std::isnan(Xvalue))){
     if(!(std::isnan(Yvalue))){
@@ -243,7 +244,7 @@ TDirectory* TRuntimeObjects::FillHistogramSym(const char* dirname,const char* na
       hist->Fill(Yvalue, Xvalue);
     }
   }
-  dir->cd("../");
+  //  dir->cd("../");
   //return hist;
   return dir;/*
   TH2* hist = (TH2*) GetObjects().FindObject(name);
